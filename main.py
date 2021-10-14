@@ -239,9 +239,14 @@ def main(search_str: str, type: str = "", link: bool = False):
     len_of_vuln = 0
 
     for tr in tr_elements:
+
         vulnerability = tr.find_all("strong")[0].text.strip()
-        application = tr.find(
-            "strong", class_="list-vulns__item__package__name").find("a").text.strip()
+        try:
+            application = tr.find(
+                "strong", class_="list-vulns__item__package__name").find("a").text.strip()
+        except AttributeError:
+            application = search_str + \
+                tr.find("span", class_="semver").text.strip()
 
         if len(vulnerability) > len_of_vuln:
             len_of_vuln = len(vulnerability)
@@ -263,7 +268,7 @@ def main(search_str: str, type: str = "", link: bool = False):
 
         if not link:
             lines.append([m+vulnerability, application, tr.find_all("td", class_="t--sm")
-                          [1].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
+                          [0].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
 
         else:
             report_link = tr.find_all("a")[0].attrs["href"]
