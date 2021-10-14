@@ -25,7 +25,8 @@ python3 main.py
 ### Examples:
 
 ```
-python3 main.py --search phpmyadmin --type alpine --link 
+python3 main.py --search phpmyadmin
+python3 main.py --search /vuln/SNYK-ALPINE32-PHPMYADMIN-1087148
 ```
 
 ## Help
