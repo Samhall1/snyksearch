@@ -4,7 +4,7 @@ Snyksearch searches for vulnerable application versions.
 
 ## Description
 
-Snyksearch is a simple vulnerability search program from command line. It searches for vulnerable versions using snyk using BeautifulSoup and requests. It's completely written in Python.
+Snyksearch is a simple vulnerability search program from command line. It fetches data from snyk using BeautifulSoup and requests then snyksearch prints them out. It's completely written in Python.
 
 snyk: https://snyk.io/
 
@@ -25,7 +25,8 @@ python3 main.py
 ### Examples:
 
 ```
-python3 main.py --search phpmyadmin --type alpine --link 
+python3 main.py --search phpmyadmin
+python3 main.py --search /vuln/SNYK-ALPINE32-PHPMYADMIN-1087148
 ```
 
 ## Help
