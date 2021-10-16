@@ -89,7 +89,13 @@ def search_link(link: str):
     ov = overview.text.split("References")[1].strip().split("\n")
 
     # References:
-    references = "References:\n"+''.join(list(map(mix, ov, link_list)))
+    references = ''.join(list(map(mix, ov, link_list)))
+
+    if references:
+        references = "References:\n"+references
+
+    else:
+        references = "References:\n"+"No references found"
 
     cvss_stuff = result.find("div", class_="cvss-breakdown")
 
