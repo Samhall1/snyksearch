@@ -282,8 +282,12 @@ def main(search_str: str, type: str = "", link: bool = False):
 
         else:
             report_link = tr.find_all("a")[0].attrs["href"]
-            lines.append([m+vulnerability+f" ({report_link})", application, tr.find_all("td", class_="t--sm")
-                          [1].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
+            try:
+                lines.append([m+vulnerability+f" ({report_link})", application, tr.find_all("td", class_="t--sm")
+                              [1].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
+            except IndexError:
+                lines.append([m+vulnerability+f" ({report_link})", application, tr.find_all("td")
+                              [2].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
 
     my_table = PrettyTable(header)
     for i in lines:
