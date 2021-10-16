@@ -107,7 +107,7 @@ def search_link(link: str):
     cvss_score_classes = ["high", "medium", "low"]
 
     for cvss_score_class in cvss_score_classes:
-        while cvss_score is None:
+        if cvss_score is None:
             cvss_score = cvss_stuff.find(
                 "div", class_=f"cvss-breakdown__score cvss-breakdown__score--{cvss_score_class}")
         else:
