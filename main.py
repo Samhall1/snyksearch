@@ -273,8 +273,12 @@ def main(search_str: str, type: str = "", link: bool = False):
             m = f"{CYAN}[{MAGENTA}{m}{CYAN}] "
 
         if not link:
-            lines.append([m+vulnerability, application, tr.find_all("td", class_="t--sm")
-                          [0].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
+            try:
+                lines.append([m+vulnerability, application, tr.find_all("td", class_="t--sm")
+                              [0].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
+            except IndexError:
+                lines.append([m+vulnerability, application, tr.find_all("td")
+                              [2].text.strip(), tr.find("td", class_="l-align-right t--sm").text.strip()])
 
         else:
             report_link = tr.find_all("a")[0].attrs["href"]
