@@ -110,6 +110,8 @@ def search_link(link: str):
         while cvss_score is None:
             cvss_score = cvss_stuff.find(
                 "div", class_=f"cvss-breakdown__score cvss-breakdown__score--{cvss_score_class}")
+        else:
+            break
 
     cvss_score = cvss_score.text.strip()
     severity = cvss_stuff.find(
